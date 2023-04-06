@@ -1,6 +1,7 @@
 import Button from "../../components/common/Button/Button";
 import React from "react";
 import { S } from "./SignInStyle";
+import Input from "../../components/common/Input/Input";
 
 export default function SignIn() {
   return (
@@ -9,11 +10,25 @@ export default function SignIn() {
       <S.Container>
         <S.Title>Login</S.Title>
         <S.FormContainer>
-          <label>Email</label>
-          <input type="email" placeholder="email" width="auto" />
-          <label>Password</label>
-          <input type="password" placeholder="password" />
-          <Button theme={""}>Sign In</Button>
+          <Input
+            label="email"
+            type="email"
+            placeholder="Enter Email"
+            width="auto"
+          />
+          <Input
+            label="Password"
+            type="Password"
+            placeholder="Enter Password"
+            width="auto"
+          />
+          <Button
+            bgcolor="--accent-color"
+            txtcolor="--color-type-02"
+            disabled={false}
+          >
+            Sign In
+          </Button>
         </S.FormContainer>
       </S.Container>
     </main>

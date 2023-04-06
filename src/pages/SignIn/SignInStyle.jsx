@@ -31,18 +31,6 @@ const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
-  label {
-    padding-bottom: 5px;
-  }
-  input {
-    width: 330px;
-    height: 40px;
-    padding-left: 10px;
-    margin-bottom: 25px;
-    border-radius: 5px;
-    background-color: var(--color-type-04);
-    font-size: 1rem;
-  }
 `;
 
 export const S = { Container, Title, FormContainer };
