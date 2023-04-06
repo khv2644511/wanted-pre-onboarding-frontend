@@ -1,12 +1,26 @@
 import React from "react";
 import { S } from "./InputStyle";
 
-export default function Input({ label, type, placeholder, width }) {
+export default function Input({
+  onChange,
+  name,
+  label,
+  type,
+  placeholder,
+  required,
+  value,
+}) {
   return (
     <>
-      <S.Label>{label}</S.Label>
-      <S.Input type={type} placeholder={placeholder} width={width} />
-      <span>{}</span>
+      <S.Label htmlFor={type}>{label}</S.Label>
+      <S.Input
+        onChange={onChange}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        required={required}
+        value={value}
+      />
     </>
   );
 }

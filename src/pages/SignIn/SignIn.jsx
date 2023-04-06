@@ -1,26 +1,47 @@
+import React, { useCallback, useState } from "react";
 import Button from "../../components/common/Button/Button";
-import React from "react";
 import { S } from "./SignInStyle";
 import Input from "../../components/common/Input/Input";
+import useInput from "../../hooks/common/useInput";
 
 export default function SignIn() {
+  const [{ email, password }, onChange] = useInput({
+    email: "",
+    password: "",
+  });
+
+  const checkValid = email.includes("@") && password.length >= 8;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (checkValid) {
+      console.log(email, password);
+    }
+  };
+
   return (
     <main>
       <h1 className="ir-hidden">로그인페이지</h1>
       <S.Container>
         <S.Title>Login</S.Title>
-        <S.FormContainer>
+        <S.FormContainer onSubmit={handleSubmit}>
           <Input
+            onChange={onChange}
+            name="email"
+            value={email}
             label="email"
             type="email"
             placeholder="Enter Email"
-            width="auto"
+            required={true}
           />
           <Input
+            onChange={onChange}
+            name="password"
+            value={password}
             label="Password"
             type="Password"
             placeholder="Enter Password"
-            width="auto"
+            required={true}
           />
           <Button
             bgcolor="--accent-color"
