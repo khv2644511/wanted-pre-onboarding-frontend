@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import Button from "../../components/common/Button/Button";
 import { S } from "./SignInStyle";
 import Input from "../../components/common/Input/Input";
@@ -33,6 +33,7 @@ export default function SignIn() {
             type="email"
             placeholder="Enter Email"
             required={true}
+            data-testid="email-input"
           />
           <Input
             onChange={onChange}
@@ -42,11 +43,13 @@ export default function SignIn() {
             type="Password"
             placeholder="Enter Password"
             required={true}
+            data-testid="password-input"
           />
           <Button
             bgcolor="--accent-color"
             txtcolor="--color-type-02"
             disabled={false}
+            data-testid="signup-button"
           >
             Sign In
           </Button>

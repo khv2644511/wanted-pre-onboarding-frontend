@@ -9,7 +9,9 @@ export default function Input({
   placeholder,
   required,
   value,
+  ...rest
 }) {
+  console.log({ ...rest });
   return (
     <>
       <S.Label htmlFor={type}>{label}</S.Label>
@@ -20,6 +22,7 @@ export default function Input({
         placeholder={placeholder}
         required={required}
         value={value}
+        {...rest}
       />
     </>
   );
