@@ -11,7 +11,6 @@ export default function Input({
   value,
   ...rest
 }) {
-  console.log({ ...rest });
   return (
     <>
       <S.Label htmlFor={type}>{label}</S.Label>
