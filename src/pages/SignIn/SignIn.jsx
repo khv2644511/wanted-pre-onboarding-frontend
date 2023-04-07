@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../components/common/Button/Button";
 import { S } from "./SignInStyle";
 import Input from "../../components/common/Input/Input";
 import useInput from "../../hooks/common/useInput";
+import authApi from "../../services/api/auth";
+import { useNavigate } from "react-router-dom";
+import ErrorMessage from "../../components/common/ErrorMessage/ErrorMessage";
 
 export default function SignIn() {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
   const [{ email, password }, onChange] = useInput({
     email: "",
     password: "",
@@ -15,7 +21,32 @@ export default function SignIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (checkValid) {
-      console.log(email, password);
+      login();
+    } else {
+      console.log("아이디@, 비밀번호 8자 이상 입력하세요");
+    }
+  };
+
+  const loginData = {
+    email: email,
+    password: password,
+  };
+
+  const login = async () => {
+    const res = await authApi.signIn(loginData);
+    const { access_token } = res.data;
+    if (res?.status === 401) {
+      console.log(res.data.message);
+      return setError(res.data.message);
+    }
+    if (res?.status === 404) {
+      console.log(res.data.message);
+      return setError(res.data.message);
+    }
+    if (res?.status === 200 && access_token) {
+      localStorage.setItem("access_token", JSON.stringify(access_token));
+
+      return navigate("/todo");
     }
   };
 
@@ -45,6 +76,7 @@ export default function SignIn() {
             required={true}
             data-testid="password-input"
           />
+          <ErrorMessage>{error}</ErrorMessage>
           <Button
             bgcolor="--accent-color"
             txtcolor="--color-type-02"
