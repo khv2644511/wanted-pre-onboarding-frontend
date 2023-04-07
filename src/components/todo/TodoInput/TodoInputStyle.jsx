@@ -8,6 +8,7 @@ const FormContainer = styled.form`
   flex-direction: row;
   justify-content: space-between;
   margin: 0 auto;
+  margin-bottom: 20px;
   align-items: center;
 `;
 const Button = styled.button`
