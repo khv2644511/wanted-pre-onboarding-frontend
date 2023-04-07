@@ -49,7 +49,7 @@ export default function SignIn() {
             bgcolor="--accent-color"
             txtcolor="--color-type-02"
             disabled={false}
-            data-testid="signup-button"
+            data-testid="signin-button"
           >
             Sign In
           </Button>
