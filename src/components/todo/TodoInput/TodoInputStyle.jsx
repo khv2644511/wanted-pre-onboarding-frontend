@@ -16,7 +16,6 @@ const Button = styled.button`
   right: 0;
   height: 25px;
   width: 25px;
-  /* width: auto; */
   background-color: var(--color-type-01);
   border: none;
   border-radius: 20%;
