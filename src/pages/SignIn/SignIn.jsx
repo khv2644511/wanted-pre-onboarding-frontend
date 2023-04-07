@@ -85,6 +85,7 @@ export default function SignIn() {
           >
             Sign In
           </Button>
+          <S.SingUpLink to="/signup">회원가입 하러가기 ➡</S.SingUpLink>
         </S.FormContainer>
       </S.Container>
     </main>

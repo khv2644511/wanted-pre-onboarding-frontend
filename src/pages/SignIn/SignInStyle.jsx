@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.article`
@@ -33,4 +34,9 @@ const FormContainer = styled.form`
   padding-top: 10px;
 `;
 
-export const S = { Container, Title, FormContainer };
+const SingUpLink = styled(Link)`
+  color: var(--accent-color);
+  padding-top: 15px;
+`;
+
+export const S = { Container, Title, FormContainer, SingUpLink };
