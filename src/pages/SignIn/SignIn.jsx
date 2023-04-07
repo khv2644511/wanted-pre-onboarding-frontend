@@ -23,7 +23,7 @@ export default function SignIn() {
     if (checkValid) {
       login();
     } else {
-      console.log("아이디@, 비밀번호 8자 이상 입력하세요");
+      setError("비밀번호를 8자 이상 입력하세요");
     }
   };
 
@@ -36,11 +36,9 @@ export default function SignIn() {
     const res = await authApi.signIn(loginData);
     const { access_token } = res.data;
     if (res?.status === 401) {
-      console.log(res.data.message);
       return setError(res.data.message);
     }
     if (res?.status === 404) {
-      console.log(res.data.message);
       return setError(res.data.message);
     }
     if (res?.status === 200 && access_token) {
