@@ -15,8 +15,22 @@ const signIn = async (loginData) => {
   }
 };
 
+const signUp = async (signupData) => {
+  try {
+    const res = await axiosInstance.post("/auth/signup", signupData);
+    return res;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.response?.data.details);
+      return error.response;
+    }
+    console.log(error);
+  }
+};
+
 const authApi = {
   signIn,
+  signUp,
 };
 
 export default authApi;
