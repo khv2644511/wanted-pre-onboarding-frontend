@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../components/common/Button/Button";
 import { S } from "./SignupStyle";
 import Input from "../../components/common/Input/Input";
 import useInput from "../../hooks/common/useInput";
+import { useNavigate } from "react-router-dom";
+import authApi from "../../services/api/auth";
+import ErrorMessage from "../../components/common/ErrorMessage/ErrorMessage";
 
 export default function SignUp() {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
   const [{ email, password, confirmpassword }, onChange] = useInput({
     email: "",
     password: "",
@@ -20,7 +26,29 @@ export default function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (checkValid) {
-      console.log(email, password, confirmpassword);
+      signup();
+    } else if (password !== confirmpassword) {
+      setError("비밀번호를 동일하게 작성해주세요");
+    } else {
+      setError("비밀번호를 8자 이상 입력하세요");
+    }
+  };
+
+  const signupData = {
+    email: email,
+    password: password,
+  };
+
+  const signup = async () => {
+    const res = await authApi.signUp(signupData);
+    console.log(res);
+    if (res?.status === 400) {
+      return setError(res.data.message);
+    }
+    if (res?.status === 201) {
+      console.log("회원가입 정상동작");
+
+      return navigate("/signin");
     }
   };
 
@@ -60,6 +88,7 @@ export default function SignUp() {
             required={true}
             data-testid="password-input"
           />
+          <ErrorMessage>{error}</ErrorMessage>
           <Button
             bgcolor="--accent-color"
             txtcolor="--color-type-02"
