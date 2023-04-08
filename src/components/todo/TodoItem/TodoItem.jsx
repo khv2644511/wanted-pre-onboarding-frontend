@@ -8,7 +8,7 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 
 export default function TodoItem({ todoData, getTodos }) {
   const { todo, id } = todoData;
-  const [modifyClick, setModifyClick] = useState(true);
+  const [modifyClick, setModifyClick] = useState(false);
 
   return (
     <S.TodoItemList>
@@ -17,7 +17,7 @@ export default function TodoItem({ todoData, getTodos }) {
           <CheckBox todoData={todoData} />
           <S.ModifyInput type="text" />
           <SubmitButton />
-          <CancelButton />
+          <CancelButton onclick={() => setModifyClick((prev) => !prev)} />
         </S.Form>
       ) : (
         <>
