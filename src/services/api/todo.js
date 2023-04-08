@@ -13,8 +13,21 @@ const createTodo = async (todo) => {
   }
 };
 
+const getTodos = async () => {
+  try {
+    const res = await axiosAuthInstance.get("/todos");
+    return res;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return error.response;
+    }
+    console.log(error);
+  }
+};
+
 const todoApi = {
   createTodo,
+  getTodos,
 };
 
 export default todoApi;
