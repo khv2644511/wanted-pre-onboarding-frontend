@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { S } from "./TodoStyle";
 import LogoutButton from "../../components/todo/LogoutButton/LogoutButton";
 import TodoInput from "../../components/todo/TodoInput/TodoInput";
 import ToDoList from "../../components/todo/TodoList/TodoList";
+import useGetTodo from "../../hooks/todo/useGetTodo";
 
 export default function Todo() {
+  const [isLoading, todos, getTodos] = useGetTodo();
+
+  useEffect(() => {
+    getTodos();
+  }, [getTodos]);
+
   return (
     <S.Container>
       <S.Header>
@@ -13,7 +20,7 @@ export default function Todo() {
       </S.Header>
       <S.TodoContainer>
         <TodoInput />
-        <ToDoList />
+        <ToDoList todos={todos} isLoading={isLoading} />
       </S.TodoContainer>
     </S.Container>
   );

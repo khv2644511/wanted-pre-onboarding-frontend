@@ -3,12 +3,12 @@ import { S } from "./TodoItemStyle";
 import ModifyButton from "../ModifyButton/ModifyButton";
 import RemoveButton from "../RemoveButton/RemoveButton";
 
-export default function TodoItem() {
+export default function TodoItem({ todo }) {
   return (
     <S.TodoItemList>
       <label>
         <input type="checkbox" />
-        <S.TodoText>오늘 할일 1</S.TodoText>
+        <S.TodoText>{todo}</S.TodoText>
       </label>
       <S.ButtonContainer>
         <ModifyButton />
