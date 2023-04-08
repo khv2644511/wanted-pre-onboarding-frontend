@@ -8,6 +8,7 @@ const TodoItemList = styled.li`
   padding-bottom: 5px;
   justify-content: space-between;
   align-items: center;
+  margin-top: 3px;
   label {
     display: flex;
     flex-basis: auto;
@@ -33,8 +34,26 @@ const ButtonContainer = styled.div`
   gap: 10px;
 `;
 
+const Form = styled.form`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+`;
+
+const ModifyInput = styled.input`
+  flex-basis: 100%;
+  width: 80%;
+  height: 20px;
+  font-size: 1rem;
+  border: 1px solid black;
+  border-radius: 5px;
+`;
+
 export const S = {
   TodoItemList,
   TodoText,
   ButtonContainer,
+  Form,
+  ModifyInput,
 };

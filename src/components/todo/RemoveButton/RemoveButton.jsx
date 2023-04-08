@@ -14,7 +14,7 @@ export default function RemoveButton({ todoId, getTodos }) {
   );
 
   return (
-    <S.Button onClick={() => handleDelete(todoId)}>
+    <S.Button onClick={() => handleDelete(todoId)} data-testid="delete-button">
       <BsFillTrash3Fill />
     </S.Button>
   );
