@@ -6,7 +6,7 @@ export default function ToDoList({ todos, isLoading }) {
     <S.ContainerUl>
       {isLoading ? (
         <p>Loading...</p>
-      ) : todos ? (
+      ) : todos.length !== 0 ? (
         todos.map((todo) => <TodoItem key={todo.id} todo={todo.todo} />)
       ) : (
         <p>Todo를 작성해보세요!</p>
