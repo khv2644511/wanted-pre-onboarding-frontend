@@ -1,34 +1,57 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { S } from "./TodoItemStyle";
 import ModifyButton from "../ModifyButton/ModifyButton";
 import RemoveButton from "../RemoveButton/RemoveButton";
-import CheckBox from "../CheckBox/CheckBox";
 import CancelButton from "../CancelButton/CancelButton";
 import SubmitButton from "../SubmitButton/SubmitButton";
+import todoApi from "../../../services/api/todo";
 
 export default function TodoItem({ todoData, getTodos }) {
-  const { todo, id } = todoData;
-  const [modifyClick, setModifyClick] = useState(false);
+  const { todo, id, isCompleted } = todoData;
+  const [isModify, setIsModify] = useState(false);
+  const [isChecked, setIsChecked] = useState(isCompleted);
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const value = e.currentTarget.todoInput.value;
+    await todoApi.updateTodo(id, value, isModify);
+    getTodos();
+    setIsModify(false);
+  };
+
+  const handleOnChange = useCallback(async () => {
+    setIsChecked((prev) => !prev);
+    const res = await todoApi.updateTodo(id, todo, !isChecked);
+    console.log(res);
+  }, [id, todo, isChecked]);
 
   return (
     <S.TodoItemList>
-      {modifyClick ? (
-        <S.Form>
-          <CheckBox todoData={todoData} />
-          <S.ModifyInput type="text" />
+      {isModify ? (
+        <S.Form onSubmit={handleUpdate}>
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleOnChange}
+          />
+          <S.ModifyInput type="text" defaultValue={todo} name="todoInput" />
           <SubmitButton />
-          <CancelButton onclick={() => setModifyClick((prev) => !prev)} />
+          <CancelButton onclick={() => setIsModify((prev) => !prev)} />
         </S.Form>
       ) : (
         <>
           <label>
-            <CheckBox todoData={todoData} />
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleOnChange}
+            />
             <S.TodoText>{todo}</S.TodoText>
           </label>
           <S.ButtonContainer>
             <ModifyButton
               onclick={() => {
-                setModifyClick((prev) => !prev);
+                setIsModify((prev) => !prev);
               }}
             />
             <RemoveButton todoId={id} getTodos={getTodos} />
