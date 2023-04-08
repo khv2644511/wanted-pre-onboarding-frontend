@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../components/common/Button/Button";
 import { S } from "./SignupStyle";
 import Input from "../../components/common/Input/Input";
@@ -11,26 +11,20 @@ export default function SignUp() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const [{ email, password, confirmpassword }, onChange] = useInput({
+  const [{ email, password }, onChange] = useInput({
     email: "",
     password: "",
     confirmpassword: "",
   });
 
-  const checkValid =
-    email.includes("@") &&
-    password.length >= 8 &&
-    confirmpassword.length >= 8 &&
-    password === confirmpassword;
+  const checkValid = !(email.includes("@") && password.length >= 8);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (checkValid) {
+    if (!checkValid) {
       signup();
-    } else if (password !== confirmpassword) {
-      setError("비밀번호를 동일하게 작성해주세요");
     } else {
-      setError("비밀번호를 8자 이상 입력하세요");
+      setError("아이디 혹은 비밀번호를 확인하세요");
     }
   };
 
@@ -46,11 +40,16 @@ export default function SignUp() {
       return setError(res.data.message);
     }
     if (res?.status === 201) {
-      console.log("회원가입 정상동작");
-
       return navigate("/signin");
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      navigate("/todo");
+    }
+  }, [navigate]);
 
   return (
     <main>
@@ -78,21 +77,11 @@ export default function SignUp() {
             required={true}
             data-testid="password-input"
           />
-          <Input
-            onChange={onChange}
-            name="confirmpassword"
-            value={confirmpassword}
-            label="confirm password"
-            type="Password"
-            placeholder="Please Enter Again"
-            required={true}
-            data-testid="password-input"
-          />
           <ErrorMessage>{error}</ErrorMessage>
           <Button
             bgcolor="--accent-color"
             txtcolor="--color-type-02"
-            disabled={false}
+            disabled={checkValid}
             data-testid="signup-button"
           >
             Sign Up

@@ -28,12 +28,19 @@ export default function TodoItem({ todoData, getTodos }) {
     <S.TodoItemList>
       {isModify ? (
         <S.Form onSubmit={handleUpdate}>
-          <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={handleOnChange}
-          />
-          <S.ModifyInput type="text" defaultValue={todo} name="todoInput" />
+          <label>
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleOnChange}
+            />
+            <S.ModifyInput
+              type="text"
+              defaultValue={todo}
+              name="todoInput"
+              data-testid="modify-input"
+            />
+          </label>
           <SubmitButton />
           <CancelButton onclick={() => setIsModify((prev) => !prev)} />
         </S.Form>

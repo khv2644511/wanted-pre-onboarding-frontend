@@ -4,7 +4,7 @@ import { S } from "./SubmitButtonStyel";
 
 export default function SubmitButtonStyel() {
   return (
-    <S.Button>
+    <S.Button data-testid="submit-button">
       <GiConfirmed />
     </S.Button>
   );
