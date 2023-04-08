@@ -4,11 +4,12 @@ import { AiOutlinePlus } from "react-icons/ai";
 import useInput from "../../../hooks/common/useInput";
 
 export default function TodoInput() {
-  const [{ todo }, onChange] = useInput({ todo: "" });
+  const [{ todo }, onChange, setValue] = useInput({ todo: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await todoApi.createTodo(todo);
+    setValue("todo", "");
   };
 
   return (
