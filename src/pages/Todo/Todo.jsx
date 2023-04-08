@@ -10,7 +10,7 @@ export default function Todo() {
 
   useEffect(() => {
     getTodos();
-  }, [getTodos]);
+  }, [getTodos, todos]);
 
   return (
     <S.Container>
