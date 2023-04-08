@@ -16,11 +16,11 @@ export default function SignIn() {
     password: "",
   });
 
-  const checkValid = email.includes("@") && password.length >= 8;
+  const checkValid = !(email.includes("@") && password.length >= 8);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (checkValid) {
+    if (!checkValid) {
       login();
     } else {
       setError("비밀번호를 8자 이상 입력하세요");
@@ -85,7 +85,7 @@ export default function SignIn() {
           <Button
             bgcolor="--accent-color"
             txtcolor="--color-type-02"
-            disabled={false}
+            disabled={checkValid}
             data-testid="signin-button"
           >
             Sign In
