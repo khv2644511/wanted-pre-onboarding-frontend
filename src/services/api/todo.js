@@ -37,10 +37,26 @@ const deleteTodo = async (TodoId) => {
   }
 };
 
+const updateTodo = async (TodoId, todo, isCompleted) => {
+  try {
+    const response = await axiosAuthInstance.put(`/todos/${TodoId}`, {
+      todo,
+      isCompleted,
+    });
+    return response;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return error.response;
+    }
+    console.log(error);
+  }
+};
+
 const todoApi = {
   createTodo,
   getTodos,
   deleteTodo,
+  updateTodo,
 };
 
 export default todoApi;
