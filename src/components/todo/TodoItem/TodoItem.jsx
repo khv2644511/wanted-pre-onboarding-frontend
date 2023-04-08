@@ -2,6 +2,7 @@ import React from "react";
 import { S } from "./TodoItemStyle";
 import ModifyButton from "../ModifyButton/ModifyButton";
 import RemoveButton from "../RemoveButton/RemoveButton";
+import CheckBox from "../CheckBox/CheckBox";
 
 export default function TodoItem({ todoData, getTodos }) {
   const { todo, id } = todoData;
@@ -9,7 +10,7 @@ export default function TodoItem({ todoData, getTodos }) {
   return (
     <S.TodoItemList>
       <label>
-        <input type="checkbox" />
+        <CheckBox todoData={todoData} />
         <S.TodoText>{todo}</S.TodoText>
       </label>
       <S.ButtonContainer>
