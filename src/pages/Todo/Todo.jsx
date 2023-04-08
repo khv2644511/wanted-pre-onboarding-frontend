@@ -20,7 +20,7 @@ export default function Todo() {
       </S.Header>
       <S.TodoContainer>
         <TodoInput />
-        <ToDoList todos={todos} isLoading={isLoading} />
+        <ToDoList todos={todos} isLoading={isLoading} getTodos={getTodos} />
       </S.TodoContainer>
     </S.Container>
   );

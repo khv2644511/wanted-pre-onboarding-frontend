@@ -3,7 +3,9 @@ import { S } from "./TodoItemStyle";
 import ModifyButton from "../ModifyButton/ModifyButton";
 import RemoveButton from "../RemoveButton/RemoveButton";
 
-export default function TodoItem({ todo }) {
+export default function TodoItem({ todoData, getTodos }) {
+  const { todo, id } = todoData;
+
   return (
     <S.TodoItemList>
       <label>
@@ -12,7 +14,7 @@ export default function TodoItem({ todo }) {
       </label>
       <S.ButtonContainer>
         <ModifyButton />
-        <RemoveButton />
+        <RemoveButton todoId={id} getTodos={getTodos} />
       </S.ButtonContainer>
     </S.TodoItemList>
   );
