@@ -8,8 +8,7 @@ export default function TodoInput() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await todoApi.createTodo(todo);
-    console.log(res);
+    await todoApi.createTodo(todo);
   };
 
   return (

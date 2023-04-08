@@ -7,7 +7,6 @@ export default function useGetTodo() {
 
   const getTodos = useCallback(async () => {
     const res = await todoApi.getTodos();
-    console.log(res);
     setTodos(res.data);
     setIsLoading(false);
   }, []);
