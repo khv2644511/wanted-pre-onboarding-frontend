@@ -21,8 +21,7 @@ export default function TodoItem({ todoData, getTodos }) {
 
   const handleOnChange = useCallback(async () => {
     setIsChecked((prev) => !prev);
-    const res = await todoApi.updateTodo(id, todo, !isChecked);
-    console.log(res);
+    await todoApi.updateTodo(id, todo, !isChecked);
   }, [id, todo, isChecked]);
 
   return (
