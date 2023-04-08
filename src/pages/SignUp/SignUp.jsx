@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../components/common/Button/Button";
 import { S } from "./SignupStyle";
 import Input from "../../components/common/Input/Input";
@@ -43,6 +43,13 @@ export default function SignUp() {
       return navigate("/signin");
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      navigate("/todo");
+    }
+  }, [navigate]);
 
   return (
     <main>
