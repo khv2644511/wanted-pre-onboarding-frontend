@@ -8,6 +8,11 @@ export default function TodoInput({ getTodos }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!todo) {
+      return alert("투두를 입력해주세요.");
+    }
+
     await todoApi.createTodo(todo);
     getTodos();
     setValue("todo", "");
