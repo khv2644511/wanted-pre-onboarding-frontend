@@ -35,7 +35,6 @@ export default function SignUp() {
 
   const signup = async () => {
     const res = await authApi.signUp(signupData);
-    console.log(res);
     if (res?.status === 400) {
       return setError(res.data.message);
     }

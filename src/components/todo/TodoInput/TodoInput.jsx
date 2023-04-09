@@ -3,12 +3,13 @@ import { S } from "./TodoInputStyle";
 import { AiOutlinePlus } from "react-icons/ai";
 import useInput from "../../../hooks/common/useInput";
 
-export default function TodoInput() {
+export default function TodoInput({ getTodos }) {
   const [{ todo }, onChange, setValue] = useInput({ todo: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await todoApi.createTodo(todo);
+    getTodos();
     setValue("todo", "");
   };
 

@@ -10,7 +10,7 @@ export default function Todo() {
 
   useEffect(() => {
     getTodos();
-  }, [getTodos, todos]);
+  }, [getTodos]);
 
   return (
     <S.Container>
@@ -19,7 +19,7 @@ export default function Todo() {
         <LogoutButton />
       </S.Header>
       <S.TodoContainer>
-        <TodoInput />
+        <TodoInput getTodos={getTodos} />
         <ToDoList todos={todos} isLoading={isLoading} getTodos={getTodos} />
       </S.TodoContainer>
     </S.Container>
