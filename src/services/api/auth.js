@@ -7,8 +7,6 @@ const signIn = async (loginData) => {
     return res;
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error.response?.data.details);
-
       return error.response;
     }
     console.log(error);
@@ -21,7 +19,6 @@ const signUp = async (signupData) => {
     return res;
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error.response?.data.details);
       return error.response;
     }
     console.log(error);
