@@ -8,7 +8,8 @@ const Container = styled.main`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
-  min-height: 300px;
+  padding: 5px 20px;
+  min-height: 500px;
   background-color: var(--color-type-02);
   border: 2px solid var(--color-type-03);
   border-radius: 10px;
