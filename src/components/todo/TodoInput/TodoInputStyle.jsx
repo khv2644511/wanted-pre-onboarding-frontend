@@ -12,6 +12,7 @@ const FormContainer = styled.form`
   align-items: center;
 `;
 const Button = styled.button`
+  display: flex;
   position: absolute;
   right: 0;
   height: 25px;
@@ -35,6 +36,7 @@ const Input = styled.input`
   border: none;
   border-radius: 5px;
   background-color: var(--color-type-03);
+  padding: 7px;
 `;
 export const S = {
   FormContainer,

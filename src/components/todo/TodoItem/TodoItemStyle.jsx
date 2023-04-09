@@ -44,10 +44,12 @@ const Form = styled.form`
 const ModifyInput = styled.input`
   flex-basis: 100%;
   width: 80%;
-  height: 20px;
+  height: 25px;
   font-size: 1rem;
   border: 1px solid black;
   border-radius: 5px;
+  padding: 7px;
+  margin-left: 10px;
 `;
 
 export const S = {
