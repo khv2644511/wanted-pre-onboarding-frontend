@@ -7,19 +7,23 @@ import { useNavigate } from "react-router-dom";
 import authApi from "../../services/api/auth";
 import ErrorMessage from "../../components/common/ErrorMessage/ErrorMessage";
 
+interface SignUpData {
+  email: string;
+  password: string;
+}
+
 export default function SignUp() {
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
   const navigate = useNavigate();
 
   const [{ email, password }, onChange] = useInput({
     email: "",
     password: "",
-    confirmpassword: "",
   });
 
-  const checkValid = !(email.includes("@") && password.length >= 8);
+  const checkValid: boolean = !(email.includes("@") && password.length >= 8);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (!checkValid) {
       signup();
@@ -28,7 +32,7 @@ export default function SignUp() {
     }
   };
 
-  const signupData = {
+  const signupData: SignUpData = {
     email: email,
     password: password,
   };
