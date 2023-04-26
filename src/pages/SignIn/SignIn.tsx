@@ -7,8 +7,13 @@ import authApi from "../../services/api/auth";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../../components/common/ErrorMessage/ErrorMessage";
 
+interface LoginData {
+  email: string;
+  password: string;
+}
+
 export default function SignIn() {
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
   const navigate = useNavigate();
 
   const [{ email, password }, onChange] = useInput({
@@ -16,9 +21,9 @@ export default function SignIn() {
     password: "",
   });
 
-  const checkValid = !(email.includes("@") && password.length >= 8);
+  const checkValid: boolean = !(email.includes("@") && password.length >= 8);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (!checkValid) {
       login();
@@ -27,14 +32,14 @@ export default function SignIn() {
     }
   };
 
-  const loginData = {
+  const loginData: LoginData = {
     email: email,
     password: password,
   };
 
-  const login = async () => {
+  const login = async (): Promise<void> => {
     const res = await authApi.signIn(loginData);
-    const { access_token } = res.data;
+    const { access_token } = res?.data;
     if (res?.status === 401) {
       return setError(res.data.message);
     }
